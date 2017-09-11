@@ -21,11 +21,11 @@ for iter = 1:num_iters
     % size(y) = 97x1
     % size(theta) = 2x1
 
-    % h(x) = theta^T * X, needs to be (97x1) b/c we later do: cost_fcn - y
-    cost_fcn = X*theta;  % (97x2)*(2x1) = (97x1)
+    % h(x) = theta^T * X, needs to be (97x1) b/c we later do: h - y
+    h = X*theta;  % (97x2)*(2x1) = (97x1)
     
     % partial_diff needs to be (2x1), b/c we later substract this from theta
-    partial_diff = cost_fcn - y;  % is (97x1)
+    partial_diff = h - y;  % is (97x1)
     partial_diff = X'*partial_diff;  % (2x97)*(97*1) = (2x1)
     
     theta = theta - (alpha/m)*partial_diff;
