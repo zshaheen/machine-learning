@@ -30,11 +30,14 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+% size(all_theta) == 10x401
+% size(X) == 5000x401
 
+h = sigmoid(X*all_theta');  % size(h) == 5000x10
 
-
-
-
+% size(p) == 5000x1
+% size(max(h, [], 2)) == 5000x1
+[_, p] = max(h, [], 2);  % output of max() is [max_values, index_of_max_values]
 
 % =========================================================================
 
