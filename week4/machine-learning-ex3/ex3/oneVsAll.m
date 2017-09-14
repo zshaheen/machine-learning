@@ -49,11 +49,27 @@ X = [ones(m, 1) X];
 %                 initial_theta, options);
 %
 
+%size(X) == 5000x401
+%size(y) == 5000x1
+%size(num_labels) == 1x1, num_labels == 10
+%size(lambda) == 1x1
+%size(all_theta) == 10x401
 
 
+% [J, grad] = lrCostFunction(theta, X, y, lambda)
 
+% Each row of all_theta is the learned logistic regression parameters for one class (10 classes total)
+for class=1:num_labels
 
+    initial_theta = zeros(n + 1, 1);
+    options = optimset('GradObj', 'on', 'MaxIter', 50);
+    [theta] = fmincg(@(t)(lrCostFunction(t, X, (y == class), lambda)), initial_theta, options);
 
+    % size(theta) == 401x1
+    % size(all_theta(class, :)) == 1x401
+    all_theta(class, :) = theta(:);
+
+end
 
 
 
